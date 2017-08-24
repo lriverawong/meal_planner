@@ -33,6 +33,14 @@ Look at available routes
 ```
 docker-compose run --rm app rake routes
 ```
+## Part 3: Create Recipe and Testing (TDD)
+```
+docker-compose exec app bash
+# docker-compose exec --user "$(id -u):$(id -g)" app rails db:reset
+```
+```
+rails g migration create_recipes
+```
 
 
 # README

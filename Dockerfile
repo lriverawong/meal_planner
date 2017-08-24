@@ -15,5 +15,7 @@ COPY Gemfile* ./
 RUN bundle install
 COPY . .
 
-CMD rails s -b 0.0.0.0
+CMD rails s -b 0.0.0.0 -P /tmp/puma.pid
+# the end prevents from error (server already running under another pid)
+
 #CMD script/start
