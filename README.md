@@ -1,6 +1,12 @@
 # Meal Plan Web App Setup
 Based on:
   * https://coderjourney.com/learning-rails-project-setup-and-planning/
+# Basic Commands for Container
+Enter a disposable interactive shell
+```
+docker-compose run --rm --user "$(id -u):$(id -g)" app bash
+```
+
 ## Basic Project Setup
 ```
 docker run --rm i-ti -v $PWD:/usr/src -w /usr/src ruby:2.3.1 bash
@@ -40,6 +46,17 @@ docker-compose exec app bash
 ```
 ```
 rails g migration create_recipes
+```
+Edit recipe migration and recipe model.
+Now insert minitest and factory girl into Gemfile.
+Now install the gems after container restart.
+```
+rails g minitest:install
+```
+Need to generate the factory for the create method in recipe testing.
+```
+rails g factory_girl:model User
+rails g factory_girl:model Recipe
 ```
 
 
