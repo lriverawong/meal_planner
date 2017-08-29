@@ -5,3 +5,4 @@ class Meal < ApplicationRecord
   validates :date, presence: true
   validates :meal_plan, presence: true
   validates :recipe, presence: true
+end
