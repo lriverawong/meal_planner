@@ -1,5 +1,7 @@
 class Meal < ApplicationRecord
-  belongs_to :meal_plan
+  # the inverse is there so that when :meals is created - it hooks back up to the parent
+  # belongs_to :meal, inverse_of: :meals
+  belongs_to :meal_plan, inverse_of: :meals
   belongs_to :recipe
 
   validates :date, presence: true

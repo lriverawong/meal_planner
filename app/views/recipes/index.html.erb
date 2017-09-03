@@ -1,4 +1,7 @@
-<h1>Recipes</h1>
+<div class="title-container">
+  <h1>Recipes</h1>
+  <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default" %>
+</div>
 
 <div class="recipes">
   <% @recipes.each do |recipe| %>

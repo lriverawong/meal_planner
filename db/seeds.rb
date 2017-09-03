@@ -14,6 +14,7 @@ User.delete_all
 
 puts "Creating User"
 user = FactoryGirl.create(:user, email: "test@example.com")
+# note password = password
 
 puts "Creating Recipes"
 20.times do

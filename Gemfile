@@ -15,6 +15,9 @@ gem 'nokogiri', '1.6.8.1'
 
 gem 'clearance', '~> 1.16' #'~> 1.15.1'
 
+gem 'rubocop', '~> 0.49.1', require: false
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

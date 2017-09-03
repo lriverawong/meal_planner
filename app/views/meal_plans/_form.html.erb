@@ -1,0 +1,26 @@
+<%= render partial: "shared/errors" %>
+
+<%= form_for @meal_plan do |form| %>
+    <%= form.hidden_field :start_date %>
+    <%= form.hidden_field :end_date %>
+
+    <div class="meals">
+      <%= form.fields_for :meals do |meal_fields| %>
+          <div class="meals">
+            <% # returns us a form builder specific for each meal and then we can take each of these to our meal form%>
+            <%= meal_fields.hidden_field :id %>
+            <%= meal_fields.hidden_field :date %>
+            <%# the .object works by requiring meal_plan object to have accepts_nested_attributes which means that the meal_plan object is allowed to receive form attributes for a nested model%>
+            <p><%= meal_fields.object.date.to_s %></p>
+            <div class="form-control" >
+              <%= meal_fields.label :recipe_id %>
+              <%= meal_fields.select :recipe_id, current_user.recipe_options %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+<% end %>
