@@ -1,27 +1,31 @@
 <div class="title-container">
   <h1>New Meal Plan</h1>
 </div>
+
 <% # meal_plan is not saved, and if passing in an object that is not saved into the form builder... %>
 <% #  by default it will POST with the default path [POST & meal_plan_path] but we don't want that %>
 <% # which would hit our create action but we don't want that. %>
 <% # We want that when you click "Generate Plan button" for it to hit our NEW action and send params of start_date and end_date - that way we can customize (re-render) how we prebuilt the meal plan and rebuild the meals that are associated with it %>
 <% # TLDR: overidding the URL and method %>
 <% # url matches the action portion of the actual form tag %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for @meal_plan, url: new_meal_plan_path, method: "GET", html: {class: "form-inline"} do |form| %>
+        <div class="form-group">
+          <%= form.label :start_date %>
+          <%= form.text_field :start_date, type: "date", class: "form-control" %>
+        </div>
 
-<%= form_for @meal_plan, url: new_meal_plan_path, method: "GET" do |form| %>
-    <div class="form-control">
-      <%= form.label :start_date %>
-      <%= form.text_field :start_date, type: "date" %>
-    </div>
+        <div class="form-group">
+          <%= form.label :end_date %>
+          <%= form.text_field :end_date, type: "date", class: "form-control" %>
+        </div>
 
-    <div class="form-control">
-      <%= form.label :end_date %>
-      <%= form.text_field :end_date, type: "date" %>
-    </div>
-
-    <div class="action">
-      <%= form.submit "Generate Plan" %>
-    </div>
-<% end %>
+        <div class="form-group action">
+          <%= form.submit "Generate Plan", class: "btn btn-default" %>
+        </div>
+    <% end %>
+  </div>
+</div>
 
 <%= render partial: "form" %>
