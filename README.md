@@ -111,3 +111,11 @@ $ docker-compose -f docker-compose.prod.yml build prod_app
 $ docker-compose -f docker-compose.prod.yml run --rm prod_app rake db:create
 $ docker-compose -f docker-compose.prod.yml run --rm prod_app rake db:migrate
 ```
+
+# Running the app with the nginx overrides for local development
+```
+docker-compose -f docker-compose.yml -f docker-compose.override.yml build
+docker-compose -f docker-compose.yml -f docker-compose.override.yml rake db:create
+docker-compose -f docker-compose.yml -f docker-compose.override.yml rake db:migrate
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up
+```
