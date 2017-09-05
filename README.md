@@ -84,3 +84,30 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Useful commands to control the app
+Entering the database to modify users
+https://gist.github.com/apolloclark/ea5466d5929e63043dcf
+```
+docker exec -ti mealplan_prod_db_1 /bin/bash
+psql -U postgres
+CREATE USER <user> WITH PASSWORD '<password>';
+ALTER USER meal_planner WITH SUPERUSER;
+```
+# Postgres Cheat Sheet
+list users
+```
+SELECT rolname FROM pg_roles;
+```
+list database
+```
+\l
+```
+
+# Testing production locally
+```
+$ docker-compose -f docker-compose.prod.yml build prod_app
+... After the image is built
+$ docker-compose -f docker-compose.prod.yml run --rm prod_app rake db:create
+$ docker-compose -f docker-compose.prod.yml run --rm prod_app rake db:migrate
+```

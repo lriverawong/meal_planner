@@ -1,0 +1,24 @@
+version: '2'
+services:
+  app:
+    image: lrwong/rails_n_p_pg:0.1
+    volumes:
+      - ./file_storage:/app/public/system/
+      - assets:/app/public/assets/
+    environment:
+      - SECRET_KEY_BASE=afaad8af5acc8841359153f01f970827e815def7e71d50fd5213bb8e2fcee4cc0c16d61bf30ec3a435d4849e1c4e666c653c5ddd6e407f95aa2fab938b8965b8
+  nginx:
+    ports:
+      - 80
+    volumes:
+      - ./nginx.production.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      default:
+      nginx_default:
+        aliases:
+          - meal_planner
+volumes:
+  assets:
+networks:
+  nginx_default:
+    external: true

@@ -1,22 +1,18 @@
-version: "2"
-
-volumes:
-  db-data:
-    external: false
-
+version: '2'
 services:
   db:
     image: postgres
-    env_file: .env
-    volumes:
-      - db-data:/var/lib/postgresql/data
-
-  app:
-    build: .
-    env_file: .env
-    volumes:
-      - .:/usr/src/app
     ports:
-      - "3001:3001"
+    - "5432"
+  app:
+    command: bundle exec puma -C config/puma.rb
+    ports:
+      - "3000"
     depends_on:
       - db
+  nginx:
+    image: nginx
+    volumes_from:
+      - app
+    depends_on:
+      - app
